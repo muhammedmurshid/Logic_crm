@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="add_email_form_view_in" model="ir.ui.view">
+            <field name="name">Email</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//field[@name='tag_ids']" position="after">-->
+<!--                    <field name="name_in"/>-->
+<!--                </xpath>-->
+                <field name="email_from" position="attributes">
+                    <attribute name="required">False</attribute>
+                    <attribute name="string">Mobile</attribute>
+                </field>
+            </field>
+        </record>
+        <record id="add_email_form_view" model="ir.ui.view">
+            <field name="name">Email</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//field[@name='phone_same_tick']" position="before">-->
+<!--                    <field name="name_in"/>-->
+<!--                </xpath>-->
+                <field name="email_from" position="attributes">
+                    <attribute name="required">False</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+    <!--    <record model="ir.model.fields" id="crm_stage_inherit">-->
+    <!--        <field name="name">stage_id</field>-->
+    <!--        <field name="model_id" ref="crm.model_crm_lead"/>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <field name="email_from" position="attributes">-->
+    <!--                <attribute name="required">False</attribute>-->
+    <!--            </field>-->
+    <!--        </field>&lt;!&ndash; Modify the field attributes as needed &ndash;&gt;-->
+    <!--        &lt;!&ndash; Add any other modifications to the field here &ndash;&gt;-->
+    <!--    </record>-->
+    <record id="acc_number_inherit_company" model="ir.ui.view">
+        <field name="name">Number</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='phone']" position="after">
+                <field name="acc_number"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

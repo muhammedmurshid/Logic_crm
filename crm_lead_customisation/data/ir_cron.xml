@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="cron_crm_deadline_stage_change" model="ir.cron">
+    <field name="name">CRM: Any stage to Fresh Lead</field>
+    <field name="model_id" ref="model_crm_lead"/>
+    <field name="state">code</field>
+    <field name="code">model._crm_stage_update()</field>
+    <field name='interval_number'>1</field>
+    <field name='interval_type'>days</field>
+    <field name="numbercall">-1</field>
+  </record>
+</odoo>

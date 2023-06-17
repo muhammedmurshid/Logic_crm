@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="batch_report_view_pivot" model="ir.ui.view">
+        <field name="name">batch.count.report.pivot</field>
+        <field name="model">res.batch</field>
+        <field name="priority">60</field>
+        <field name="arch" type="xml">
+            <pivot string="Batch Analysis" sample="1">
+                <field name="create_date" interval="month" type="col"/>
+                <field name="tot_seats" type="row"/>
+                <!--                    <field name="admission_fee" type="measure"/>-->
+            </pivot>
+        </field>
+    </record>
+    <record id="res_district_tree" model="ir.ui.view">
+        <field name="name">res.batch.tree</field>
+        <field name="model">res.batch</field>
+        <field name="arch" type="xml">
+            <tree string="Batch">
+                <!--                 <field name="district_code"/> -->
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="company_id"/>
+                <!--                 <field name="b_nm"/> -->
+                <!--                 <field name="location"/> -->
+                <field name="tot_seats"/>
+                <field name="available_seats"/>
+                <field name="product_id" required="1"/>
+                <field name="approve_id"/>
+                <field name="create_date"/>
+                <field name="approve_date"/>
+                <!--                 <field name="state_nm_id"/> -->
+            </tree>
+        </field>
+    </record>
+    <record id="res_district_form" model="ir.ui.view">
+        <field name="name">res.batch.form</field>
+        <field name="model">res.batch</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_approve" string="Approve" class="btn-primary" states="draft"
+                            type="object"/>
+                    <button id="rfq_approve" name="rfq_approve" string="Request For Approval" class="btn-primary"
+                            type="object" attrs="{'invisible': [('is_approve','=',True)]}"/>
+<!--                    <button name="action_allocation" string="Student Allocation" class="btn-primary" states="active"-->
+<!--                            type="object"/>-->
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_admissions" type="object" class="oe_stat_button" icon="fa-star">
+                            <div class="o_stat_info">
+                                <field name="admission_count" class="o_stat_value"/>
+                                <span class="o_stat_text">Students</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="code"/>
+                                <field name="product_id" required="1"/>
+                                <field name="approve_id"/>
+                                <field name="is_approve" invisible="1"/>
+                                <field name="create_date"/>
+                                <field name="approve_date"/>
+                            </group>
+                            <group>
+                                <field name="company_id"/>
+                                <field name="tot_seats"/>
+                                <field name="available_seats"/>
+                                <field name="from_date"/>
+                                <field name="to_date"/>
+                            </group>
+                        </group>
+                    </div>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="res_batch_action" model="ir.actions.act_window">
+        <field name="name">Batch Master</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.batch</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create...</p>
+        </field>
+    </record>
+    <!--     <record id="field_inherit_product_template" model="ir.ui.view"> -->
+    <!--         <field name="name">field.inherit.res.partner</field> -->
+    <!--         <field name="model">res.partner</field> -->
+    <!--         <field name="inherit_id" ref="product.product_template_only_form_view"/> -->
+    <!--         <field name="arch" type="xml"> -->
+    <!--             <xpath expr="//field[@name='standard_price']" position="before"> -->
+    <!--                 <field name="name" domain="[('product_id','=', name)]"/> -->
+    <!--             </xpath> -->
+    <!--         </field> -->
+    <!--     </record> -->
+<!--    <menuitem id="batch_master" name="Batch" action="res_batch_action" parent="crm.crm_menu_sales" sequence="10"/>-->
+</odoo>

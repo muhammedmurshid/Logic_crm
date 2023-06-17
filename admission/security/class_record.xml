@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="0">
+        <record id="class_user_rule" model="ir.rule">
+            <field name="name">Class User</field>
+            <field name="model_id" ref="admission.model_res_class"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('admission.group_class_user'))]"/>
+        </record>
+        <record id="class_manager_rule" model="ir.rule">
+            <field name="name">Class Manager</field>
+            <field name="model_id" ref="admission.model_res_class"/>
+            <field name="domain_force">[('user_id.sale_team_id', '=', user.sale_team_id.id)]</field>
+            <field name="groups" eval="[(4, ref('admission.group_class_manager'))]"/>
+        </record>
+        <record id="class_admin_rule" model="ir.rule">
+            <field name="name">class Administrator</field>
+            <field name="model_id" ref="admission.model_res_class"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('admission.group_class_administrator'))]"/>
+        </record>
+
+    </data>
+</odoo>

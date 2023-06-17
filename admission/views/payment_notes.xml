@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="payment_due_notes" model="ir.ui.view">
+        <field name="name">payment.notes</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="amount_due_cus" readonly="1"/>
+            </xpath>
+            <notebook position="inside">
+                <page string="Payment History" name="payment">
+
+                    <field name="due_ids">
+                        <tree editable="bottom">
+                            <!-- Define the columns to display in the related records -->
+                            <field name="student"/>
+                            <field name="course_id"/>
+                            <field name="total_amount"/>
+                            <field name="amount_due"/>
+
+                        </tree>
+                    </field>
+
+                </page>
+            </notebook>
+        </field>
+    </record>
+    <record id="payment_due_notes_tree" model="ir.ui.view">
+        <field name="name">payment.notes</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="amount_due_cus" sum="Total"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+  <record id="stage_to_assign" model="crm.stage">
+    <field name="name">To Assign</field>
+    <field name="sequence">5</field>
+  </record>
+  <record id="stage_fresh_lead" model="crm.stage">
+    <field name="name">Fresh Lead</field>
+    <field name="sequence">10</field>
+  </record>
+  <record id="stage_semi_qualified" model="crm.stage">
+    <field name="name">Semi-Qualified</field>
+    <field name="sequence">15</field>
+  </record>
+  <record id="stage_qualified" model="crm.stage">
+    <field name="name">Qualified</field>
+    <field name="sequence">16</field>
+  </record>
+  <record id="stage_no_pickup" model="crm.stage">
+    <field name="name">Not Picked Up</field>
+    <field name="sequence">17</field>
+  </record>
+  <record id="stage_not_interested" model="crm.stage">
+    <field name="name"> Not Interested</field>
+    <field name="sequence">18</field>
+  </record>
+  <record id="stage_unattended" model="crm.stage">
+    <field name="name">Unattended</field>
+    <field name="sequence">19</field>
+  </record>
+  <record id="stage_later" model="crm.stage">
+    <field name="name">Later</field>
+    <field name="sequence">20</field>
+  </record>
+  <record id="stage_old_lead" model="crm.stage">
+    <field name="name">Old Lead</field>
+    <field name="sequence">21</field>
+  </record>
+  <record id="stage_drop" model="crm.stage">
+    <field name="name">Dropped</field>
+    <field name="fold">True</field>
+    <field name="sequence">22</field>
+  </record>
+  <record id="stage_admission" model="crm.stage">
+    <field name="name">Admission</field>
+    <field name="is_won">True</field>
+    <field name="sequence">23</field>
+  </record>
+</odoo>

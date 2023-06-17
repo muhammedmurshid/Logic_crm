@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="due_master_tree" model="ir.ui.view">
+        <field name="name">due.master.tree</field>
+        <field name="model">due.master</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="due_date"/>
+                <field name="admission_number"/>
+                <field name="partner"/>
+                <field name="course"/>
+                <field name="pending_fee"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

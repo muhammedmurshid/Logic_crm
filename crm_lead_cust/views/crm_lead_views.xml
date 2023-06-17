@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="crm_lead_inherit_crm_form_view">
+        <field name="name">crm.lead.inherit.form.view</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button string="Update Stage" name="crm_update_stage" type="object" class="oe_highlight" attrs="{'invisible': [('stage', '=', 'Admission')]}"/>
+            </xpath>
+            <xpath expr="//group[@name='opportunity_partner']/field[@name='partner_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='lead_partner']/field[@name='partner_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='email_from']" position="attributes">
+                <attribute name="required">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="required">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='opportunity_partner']/field[@name='partner_id']" position="after">
+                <field name="student_name"/>
+                <field name="fresh_lead_date" invisible="1"/>
+            </xpath>
+            <xpath expr="//group[@name='lead_partner']/field[@name='partner_id']" position="after">
+                <field name="student_name"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="crm_case_tree_view_leads_inherit_crm_lead_cust" model="ir.ui.view">
+        <field name="name">crm.lead.tree.lead_inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="replace">
+                <field name="student_name" string='Candidate' required="1"/>
+            </field>
+            <field name="email_from" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="phone" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="conversion_ratio_wizard_view" model="ir.ui.view">
+            <field name="name">conversion.ratio.wizard.view</field>
+            <field name="model">conversion.ratio.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="from_date1"/>
+                                <field name="to_date1"/>
+                            </group>
+                            <group>
+                                <field name="telecaller_ids"  options="{'no_create': True}" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button name="action_orders" string="Print" type="object"
+                                    class="btn-primary"/>
+                            <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="conversion_ratio_action" model="ir.actions.act_window">
+            <field name="name">Conversion Ratio Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">conversion.ratio.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="conversion_ratio_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="conversion_ratio_report_menu"
+                  name="Conversion Report"
+                  parent="crm.crm_menu_sales"
+                  action="conversion_ratio_action"
+                  sequence="26"
+                  groups="group_show_line_convertion"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_assign_wizard_view_form" model="ir.ui.view">
+        <field name="name">crm.assign.wizard.form</field>
+        <field name="model">crm.assign.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="crm_id" invisible="1"/>
+                        <field name="user_id" domain="[('sale_team_id', '!=', False)]" required="1"/>
+                        <field name="assign_deadline" required="1"/>
+                    </group>
+                    <group>
+                        <field name="previous_user_id" invisible="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="assign_crm" string="Assign" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="crm_assign_wizard_multi_view_form" model="ir.ui.view">
+        <field name="name">crm.assign.wizard.multi.form</field>
+        <field name="model">crm.assign.multi</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="crm_id" invisible="1"/>
+                        <field name="user_id" domain="[('sale_team_id', '!=', False)]" required="1"/>
+                        <field name="assign_deadline" required="1"/>
+                    </group>
+                    <group>
+                        <field name="previous_user_id" invisible="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="assign_crm_multi" string="Assign" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="crm_assign_wizard_multi_view_action" model="ir.actions.act_window">
+        <field name="name">Assign</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">crm.assign.multi</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_assign_wizard_multi_view_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="crm_lead_customisation.model_crm_lead"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>

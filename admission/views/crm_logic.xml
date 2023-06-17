@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="field_inherit_crm_lead" model="ir.ui.view">
+        <field name="name">field.inherit.crm.lead</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <field name="priority" position="after">
+                <field name="is_admission" readonly="1"/>
+            </field>
+            <xpath expr="//page[@name='extra']" position="after">
+                <page string="Course Details" name="course_details">
+                    <field name="product_order_id">
+                        <tree editable="bottom">
+                            <!--                             <field name="pro_order_id" invisble="1"/>-->
+                            <field name="slno"/>
+                            <!--                             <field name="seats" invisible="1"/>-->
+                            <field name="product_id"/>
+                            <field name="company_id"/>
+                            <field name="batch_id"
+                                   domain="[('product_id','=', product_id),('company_id', '=', company_id), ('available_seats','!=', 0),('state', '=', 'active')]"/>
+                            <field name="available_seats"/>
+                            <field name="course_fee"/>
+                            <field name="category_id" invisible="1"/>
+                        </tree>
+
+                    </field>
+                    <group class="oe_total_footer oe_right" name="payment_total">
+                        <h1>
+                            <group>
+                                <field name="total" readonly="1"/>
+                            </group>
+                        </h1>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='internal_notes']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='expected_revenue']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='probability']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <!--             <xpath expr="//button[@name='action_sale_quotations_new']" position="attributes">-->
+            <!--                <attribute name="invisible">1</attribute>-->
+            <!--            </xpath>-->
+            <xpath expr="//button[@name='action_set_won_rainbowman']" position="after" type="object">
+                <button name="action_admission" string="Create Admission" class="oe_highlight"
+                        groups="admission.group_admission_administrator,admission.group_admission_manager,admission.group_admission_user"
+                        attrs="{'invisible': ['|',('is_admission', '=', True), ('probability', '&lt;', 100)]}"
+                        type="object"/>
+                <!--            </xpath>-->
+                <!--            <xpath expr="//form/sheet/div[@name='button_box']" position="inside">-->
+                <!--                <button name="invoice_action"-->
+                <!--                        class="oe_stat_button"-->
+                <!--                        icon="fa-bars"-->
+                <!--                        type="object"-->
+                <!--                        string="Invoice"-->
+                <!--                        attrs="{'invisible': ['|',('is_admission', '!=', True), ('probability', '&lt;', 100)]}">-->
+                <!--                </button>-->
+                <!--                </div>-->
+            </xpath>
+            <xpath expr="//form/sheet/div[@name='button_box']" position="inside">
+                <button name="admission_action"
+                        class="oe_stat_button"
+                        icon="fa-bars"
+                        type="object"
+                        string="Admission"
+                        attrs="{'invisible': ['|',('is_admission', '!=', True), ('probability', '&lt;', 100)]}">
+                </button>
+                <!--                </div>-->
+            </xpath>
+
+        </field>
+    </record>
+    <record id="kanban_view_email_inherit" model="ir.ui.view">
+        <field name="name">Email</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email_from']" position="attributes">
+                <attribute name="string">Mobile Number</attribute>
+
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="action_admission" model="ir.actions.act_window">
+        <field name="name">Admission</field>
+        <field name="res_model">crm.lead</field>
+        <field name="type">ir.actions.act_window</field>
+        <!--        <field name="view_mode">form</field>-->
+        <field name="target">new</field>
+    </record>
+    <menuitem id="crm.res_partner_menu_customer" active="False"/>
+</odoo>

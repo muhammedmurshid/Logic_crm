@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_log,access.res.log,model_res_log,,1,1,1,1
+access_medium_lines,access.medium.lines,model_medium_lines,,1,1,1,1
+access_total_leads,access.total.leads,model_total_leads,,1,1,1,1

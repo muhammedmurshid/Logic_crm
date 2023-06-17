@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="inherit_res_partner" model="ir.ui.view">
+        <field name="name">inherit.res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='schedule_meeting']" position="after">
+                <button name="action_open_admission" type="object" class="oe_stat_button" icon="fa-group">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">admission</span>
+                    </div>
+                </button>
+                <button name="action_open_class" type="object" class="oe_stat_button" icon="fa-group">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Class</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='schedule_meeting']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <tr attrs="{'invisible': [('contact_type', '!=', 'student')]}">
+                    Balance:
+                    <field name="amount_due" force_save="1"/>
+                </tr>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="parent_name" attrs="{'invisible': [('contact_type', '!=', 'student')]}" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="parent_name" attrs="{'invisible': [('contact_type', '!=', 'student')]}" readonly="0"/>
+                <field name="father_name" attrs="{'invisible': [('contact_type', '!=', 'student')]}" readonly="0"/>
+                <field name="father_no" attrs="{'invisible': [('contact_type', '!=', 'student')]}" readonly="0"/>
+                <field name="mother_name" attrs="{'invisible': [('contact_type', '!=', 'student')]}" readonly="0"/>
+                <field name="mother_no" attrs="{'invisible': [('contact_type', '!=', 'student')]}" readonly="0"/>
+                <field name="admission_fee" invisible="0"/>
+                <field name="class_ids" invisible="1"/>
+
+            </xpath>
+
+            <xpath expr="//field[@name='vat']" position="before">
+                <field name="reference" attrs="{'invisible': [('contact_type', '!=', 'student')]}"/>
+                <field name="aadhar_no" attrs="{'invisible': [('contact_type', '!=', 'student')]}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!--    <record id="education_qualification_tree" model="ir.ui.view">-->
+    <!--        <field name="name">education.qualification.tree</field>-->
+    <!--        <field name="model">education.qualification</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <tree string="Educational Qualifications">-->
+    <!--                &lt;!&ndash;                 <field name="district_code"/> &ndash;&gt;-->
+    <!--                <field name="partner_id"/>-->
+    <!--                <field name="qualification_id"/>-->
+    <!--                <field name="stream_id"/>-->
+    <!--                <field name="institution_id"/>-->
+
+    <!--            </tree>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    <!--    <record id="res_district_form" model="ir.ui.view">-->
+    <!--        <field name="name">res.batch.form</field>-->
+    <!--        <field name="model">res.batch</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form>-->
+    <!--                <sheet>-->
+    <!--                    <div class="oe_button_box" name="button_box">-->
+    <!--                        <button name="action_admissions" type="object" class="oe_stat_button" icon="fa-star">-->
+    <!--                            <div class="o_stat_info">-->
+    <!--                                <field name="admission_count" class="o_stat_value"/>-->
+    <!--                                <span class="o_stat_text">Students</span>-->
+    <!--                            </div>-->
+    <!--                        </button>-->
+    <!--                    </div>-->
+    <!--                    <div>-->
+    <!--                        <group>-->
+    <!--                            <group>-->
+    <!--                                <field name="name"/>-->
+    <!--                                <field name="code"/>-->
+    <!--                                <field name="product_id"/>-->
+    <!--                                &lt;!&ndash;                 <field name="b_nm"/> &ndash;&gt;-->
+    <!--                            </group>-->
+    <!--                            <group>-->
+    <!--                                <field name="company_id"/>-->
+    <!--                                <field name="tot_seats"/>-->
+    <!--                                <field name="available_seats"/>-->
+    <!--                            </group>-->
+    <!--                        </group>-->
+    <!--                    </div>-->
+    <!--                </sheet>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    <!--    <record id="res_batch_action" model="ir.actions.act_window">-->
+    <!--        <field name="name">Batch Master</field>-->
+    <!--        <field name="type">ir.actions.act_window</field>-->
+    <!--        <field name="res_model">res.batch</field>-->
+    <!--        <field name="view_mode">tree,form</field>-->
+    <!--        <field name="help" type="html">-->
+    <!--            <p class="o_view_nocontent_smiling_face">Create...</p>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    <!--     <record id="field_inherit_product_template" model="ir.ui.view"> -->
+    <!--         <field name="name">field.inherit.res.partner</field> -->
+    <!--         <field name="model">res.partner</field> -->
+    <!--         <field name="inherit_id" ref="product.product_template_only_form_view"/> -->
+    <!--         <field name="arch" type="xml"> -->
+    <!--             <xpath expr="//field[@name='standard_price']" position="before"> -->
+    <!--                 <field name="name" domain="[('product_id','=', name)]"/> -->
+    <!--             </xpath> -->
+    <!--         </field> -->
+    <!--     </record> -->
+    <!--    <menuitem id="batch_master" name="Batch" action="res_batch_action" parent="crm.crm_menu_sales" sequence="10"/>-->
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="seq_res_admission" model="ir.sequence">
+            <field name="name">Admission</field>
+            <field name="code">res.admission</field>
+            <field name="prefix">ADM</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_res_patner" model="ir.sequence">
+            <field name="name">Student ID</field>
+            <field name="code">res.partner</field>
+            <field name="prefix">ST</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+         <record id="test_logic_cron" model="ir.cron">
+            <field name="name">logic Main: update state</field>
+            <field name="model_id" ref="model_res_batch"/>
+            <field name="state">code</field>
+            <field name="code">model.test_logic_cron_code()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+        <record id="logic_class_cron" model="ir.cron">
+            <field name="name">logic Class Main: update state</field>
+            <field name="model_id" ref="model_res_class"/>
+            <field name="state">code</field>
+            <field name="code">model.logic_class_cron_code()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</odoo>

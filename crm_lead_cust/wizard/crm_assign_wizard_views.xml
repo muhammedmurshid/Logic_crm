@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="crm_assign_wizard_inherit_form_view" model="ir.ui.view">
+        <field name="name">crm.assign.wizard.inherit.form.view</field>
+        <field name="model">crm.assign.wizard</field>
+        <field name="inherit_id" ref="crm_lead_customisation.crm_assign_wizard_view_form"/>
+        <field name="arch" type="xml">
+            <field name="assign_deadline" position="after">
+                <field name="current_stage_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+     <record id="crm_assign_multi_inherit_form_view" model="ir.ui.view">
+        <field name="name">crm.assign.multi.inherit.form.view</field>
+        <field name="model">crm.assign.multi</field>
+        <field name="inherit_id" ref="crm_lead_customisation.crm_assign_wizard_multi_view_form"/>
+        <field name="arch" type="xml">
+            <field name="assign_deadline" position="after">
+                <field name="current_stage_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="log_tree" model="ir.ui.view">
+        <field name="name">res.log.tree</field>
+        <field name="model">res.log</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="login_time"/>
+                <field name="logout_time"/>
+                <field name="company_id"/>
+                <field name="user_id"/>
+                <field name="total"/>
+            </tree>
+        </field>
+    </record>
+    <record id="log_form" model="ir.ui.view">
+        <field name="name">res.log.form</field>
+        <field name="model">res.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="button_login" name="action_login" string="Login" class="btn-primary"
+                            states="draft"
+                            type="object"/>
+                    <button id="button_logout" name="action_logout" string="Logout" class="btn-primary"
+                            states="login"
+                            type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="login_time" readonly="1"/>
+                            <field name="company_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="logout_time" readonly="1"/>
+                            <field name="user_id" readonly="1"/>
+<!--                            <field name="total" invisible="1"/>-->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Medium Lines" name="Medium of Leads">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="medium"/>
+                                    <field name="count"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group>
+                        <group class="oe_total_footer oe_right" colspan="2" name="total_leads">
+                            <h1>
+                                <group>
+                                    <field name="total" string='Total Leads' style='size:10px' readonly="1"/>
+                                </group>
+                            </h1>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="res_log_action" model="ir.actions.act_window">
+        <field name="name">Log form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create...</p>
+        </field>
+    </record>
+    <menuitem id="loginlogout" name="Daily Log" action="res_log_action"
+              sequence="10"/>
+
+</odoo>
